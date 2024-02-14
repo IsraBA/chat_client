@@ -18,6 +18,10 @@ export default function App() {
     function onDisconnect() {
       setIsConnected(false);
     }
+    
+    function onMessages(value) {
+      setMessageEvents(value);
+    }
 
     function onMessageEvent(value) {
       setMessageEvents(previous => [...previous, value]);
@@ -25,6 +29,7 @@ export default function App() {
 
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
+    socket.on('allMessages', onMessages);
     socket.on('message', onMessageEvent);
 
     return () => {
