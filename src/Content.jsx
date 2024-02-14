@@ -20,12 +20,17 @@ export default function connect({ userName, color }) {
       setIsConnected(false);
     }
 
+    function onMessages(value) {
+      setMessageEvents(value);
+    }
+
     function onMessageEvent(value) {
       setMessageEvents(previous => [...previous, value]);
     }
 
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
+    socket.on('allMessages', onMessages);
     socket.on('message', onMessageEvent);
 
     return () => {
