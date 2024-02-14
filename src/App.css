@@ -5,11 +5,14 @@
   margin: 330;
   box-sizing: border-box;
   direction: rtl;
+  color: #000;
 }
 
 html,
 button {
   font-family: 'Poppins', sans-serif;
+  color: #000;
+
 }
 
 body {
@@ -21,6 +24,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #000;
+
 
 }
 
