@@ -1,50 +1,34 @@
-import './App.css'
-import React, { useState, useEffect } from 'react';
-import { socket } from './socket';
-import { ConnectionState } from './components/ConnectionState';
-import { ConnectionManager } from './components/ConnectionManager';
-import { Events } from "./components/Events";
-import { MyForm } from './components/MyForm';
+import Content from './Content';
+import { io } from 'socket.io-client';
+import Join from './Join';
+import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+const URL = 'http://10.0.1.36:3000';
+
 
 export default function App() {
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [messageEvents, setMessageEvents] = useState([]);
+  const [userName, setUserName] = useState('');
+  const [color, setColor] = useState('');
 
+  const socket = io(URL, {
+    query: {
+      myName: userName,
+      myColor: color
+    },
+  });
+
+  // עדכון של userName ישירות ב-query
   useEffect(() => {
-    function onConnect() {
-      setIsConnected(true);
-    }
-
-    function onDisconnect() {
-      setIsConnected(false);
-    }
-    
-    function onMessages(value) {
-      setMessageEvents(value);
-    }
-
-    function onMessageEvent(value) {
-      setMessageEvents(previous => [...previous, value]);
-    }
-
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    socket.on('allMessages', onMessages);
-    socket.on('message', onMessageEvent);
-
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-      socket.off('message', onMessageEvent);
-    };
-  }, []);
+    socket.io.opts.query.myName = userName;
+  }, [userName]);
 
   return (
-    <div className="App">
-      <ConnectionState isConnected={isConnected} />
-      <Events events={messageEvents} />
-      <ConnectionManager />
-      <MyForm />
+    <div>
+      <Routes>
+        <Route path='/' element={<Join setUserName={setUserName} setColor={setColor} />} />
+        <Route path='/content' element={<Content socket={socket} userName={userName} color={color} />} />
+      </Routes>
     </div>
   );
 }
