@@ -19,9 +19,9 @@ export default function App() {
   });
 
   // עדכון של userName ישירות ב-query
-  useEffect(() => {
-    socket.io.opts.query.myName = userName;
-  }, [userName]);
+  // useEffect(() => {
+  //   socket.io.opts.query.myName = userName;
+  // }, [userName]);
 
   return (
     <div>

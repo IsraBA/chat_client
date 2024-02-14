@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { socket } from '../socket';
+// import { socket } from '../socket';
 
-export function MyForm() {
+export function MyForm({socket}) {
   const [message, setMessage] = useState('');
 
   const handleSubmit = (event) => {

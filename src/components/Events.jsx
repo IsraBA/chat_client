@@ -1,16 +1,17 @@
 import React from 'react';
 
-export function Events({ events }) {
+export function Events({ events, userName}) {
+
     return (
         <ul className="main-chat">
-            {
-                events.map((data, index) =>
-                    <li key={index}>
-                        <div>{data.username}: {data.message}</div>
-                        <div>{data.time}</div>
-                    </li>
-                )
-            }
+            {events.map((msg, index) => (
+                <li className={msg.username === userName ? 'myName' : ''} key={index}>
+                    <div>
+                        <b style={{ color: msg.color }}>{msg.username}:</b> {msg.message}
+                    </div>
+                    <div>{msg.time}</div>
+                </li>
+            ))}
         </ul>
     );
 }
