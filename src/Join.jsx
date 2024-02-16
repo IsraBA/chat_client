@@ -11,7 +11,7 @@ export default function Join({ setUserName, setColor }) {
     const color = e.target.color.value;
     setUserName(userName);
     setColor(color);
-    console.log(userName, color);
+    console.log({userName, color});
     nav('/content');
 
   };

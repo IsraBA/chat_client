@@ -4,7 +4,7 @@ import Join from './Join';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-const URL = 'http://10.0.1.36:3000';
+const URL = 'http://localhost:3000';
 
 
 export default function App() {
@@ -17,11 +17,6 @@ export default function App() {
       myColor: color
     },
   });
-
-  // עדכון של userName ישירות ב-query
-  // useEffect(() => {
-  //   socket.io.opts.query.myName = userName;
-  // }, [userName]);
 
   return (
     <div>
