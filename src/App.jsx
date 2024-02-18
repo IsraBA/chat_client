@@ -8,7 +8,7 @@ const URL = 'http://localhost:3000';
 
 
 export default function App() {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState('anonymous');
   const [color, setColor] = useState('');
 
   const socket = io(URL, {
