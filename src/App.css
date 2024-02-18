@@ -47,7 +47,7 @@ h3 {
 }
 
 li {
-  background-color: #caffa2;
+  background-color: #ffffff;
   padding: 10px 15px;
   border-radius: 20px;
   width: fit-content;
@@ -72,6 +72,6 @@ button {
 }
 
 .myName{
-  background-color: rgb(255, 255, 255);
+  background-color: #caffa2;
   margin-right: auto;
 }
