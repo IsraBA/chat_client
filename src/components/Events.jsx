@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export function Events({ events, userName }) {
+    const chatContainerRef = useRef(null);
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [events]);
 
     return (
-        <ul className="main-chat">
+        <ul className="main-chat" ref={chatContainerRef}>
             {events.map((msg, index) => (
                 <li className={msg.username === userName ? 'myName' : ''} key={index}>
                     <div>
